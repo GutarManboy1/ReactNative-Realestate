@@ -1,10 +1,10 @@
 import { Text, View, Image, TouchableOpacity } from "react-native";
-import { Link } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import images from "@/constants/images";
 import icons from "@/constants/icons";
 import Search from "@/app/components/Search";
 import { FeaturedCard, Card } from "@/app/components/Cards";
+import Filters from "@/app/components/Filters";
 
 export default function Index() {
   return (
@@ -36,10 +36,30 @@ export default function Index() {
               </Text>
             </TouchableOpacity>
           </View>
+
+          <View className="flex flex-row gap-5 mt-5">
+            <FeaturedCard />
+            <FeaturedCard />
+          </View>
         </View>
 
-        <FeaturedCard />
-        <Card />
+        <Filters />
+
+        <View className="flex flex-row items-center justify-between">
+          <Text className="text-xl font-rubik-bold text-black-300">
+            Our Recommendations
+          </Text>
+          <TouchableOpacity>
+            <Text className="text-primary-300 font-rubik-bold text-base">
+              See All
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View className="flex flex-row gap-5 mt-5">
+          <Card />
+          <Card />
+        </View>
       </View>
     </SafeAreaView>
   );
