@@ -5,18 +5,19 @@ import icons from "@/constants/icons";
 import Search from "@/app/components/Search";
 import { FeaturedCard, Card } from "@/app/components/Cards";
 import Filters from "@/app/components/Filters";
+import seed, { properties } from "@/app/lib/seed";
 
 export default function Index() {
   return (
     <SafeAreaView className="bg-white h-full">
       <FlatList
-        data={[1, 2, 3, 4]}
+        data={properties}
         numColumns={2}
         contentContainerClassName="pb-32"
         columnWrapperClassName="flex px-5 gap-5"
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => <Card />}
-        keyExtractor={(item) => item.toString()}
+        keyExtractor={(item) => item.$id}
         ListHeaderComponent={
           <View className="px-5">
             <View className="flex flex-row items-center justify-between mt-5">
@@ -50,11 +51,11 @@ export default function Index() {
               </View>
 
               <FlatList
-                data={[1, 2, 3, 4]}
+                data={properties.slice(0, 4)}
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => <FeaturedCard />}
-                keyExtractor={(item) => item.toString()}
+                keyExtractor={(item) => item.$id}
                 bounces={false}
                 contentContainerClassName="flex gap-5 mt-5"
               />
