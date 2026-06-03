@@ -38,7 +38,7 @@ export const FeaturedCard = ({ item, onPress }: Props) => {
         </Text>
         <View className="flex flex-row items-center justify-between w-full">
           <Text className="text-xl font-rubik-bold text-white">
-            ${item.price.toLocaleString()}
+            ¥{item.price.toLocaleString()}
           </Text>
           <Image source={icons.heart} className="size-6" />
         </View>
@@ -70,7 +70,7 @@ export const Card = ({ item, onPress }: Props) => {
 
       <View className="flex flex-row items-center justify-between mt-2">
         <Text className="text-base font-rubik-bold text-primary-300">
-          ${item.price.toLocaleString()}
+          ¥{item.price.toLocaleString()}
         </Text>
         <Image source={icons.heart} className="w-5 h-5 mr-2" tintColor="#191d31" />
       </View>
