@@ -1,19 +1,21 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
-import images from "@/constants/images";
 import icons from "@/constants/icons";
+import images from "@/constants/images";
+import { Property } from "@/app/lib/seed";
 
 interface Props {
+  item: Property;
   onPress?: () => void;
 }
 
-export const FeaturedCard = ({ onPress }: Props) => {
+export const FeaturedCard = ({ item, onPress }: Props) => {
   return (
     <TouchableOpacity
       onPress={onPress}
       className="flex flex-col items-start h-80 w-60 relative"
     >
-      <Image source={images.japan} className="size-full rounded-2xl" />
+      <Image source={{ uri: item.image }} className="size-full rounded-2xl" />
       <Image
         source={images.cardGradient}
         className="size-full rounded-2xl absolute bottom-0"
@@ -21,7 +23,7 @@ export const FeaturedCard = ({ onPress }: Props) => {
       <View className="flex flex-row items-center bg-white/90 px-3 py-1.5 rounded-full absolute top-5 right-5">
         <Image source={icons.star} className="size-6" />
         <Text className="text-xs font-rubik-bold text-primary-300 ml-1">
-          4.4
+          {item.rating.toFixed(1)}
         </Text>
       </View>
       <View className="flex flex-col items-start absolute bottom-5 inset-x-5">
@@ -29,13 +31,15 @@ export const FeaturedCard = ({ onPress }: Props) => {
           className="text-xl font-rubik-extrabold text-white"
           numberOfLines={1}
         >
-          Japanese Villa
+          {item.name}
         </Text>
         <Text className="text-base font-rubik text-white" numberOfLines={2}>
-          Tokyo Setagaya-ku, Matsubara
+          {item.address}
         </Text>
         <View className="flex flex-row items-center justify-between w-full">
-          <Text className="text-xl font-rubik-bold text-white">¥250,000</Text>
+          <Text className="text-xl font-rubik-bold text-white">
+            ¥{item.price.toLocaleString()}
+          </Text>
           <Image source={icons.heart} className="size-6" />
         </View>
       </View>
@@ -43,7 +47,7 @@ export const FeaturedCard = ({ onPress }: Props) => {
   );
 };
 
-export const Card = ({ onPress }: Props) => {
+export const Card = ({ item, onPress }: Props) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -52,18 +56,22 @@ export const Card = ({ onPress }: Props) => {
       <View className="flex flex-row items-center bg-white/90 px-2 top-5 absolute p-1 rounded-full z-50 right-5">
         <Image source={icons.star} className="size-6" />
         <Text className="text-xs font-rubik-bold text-primary-300 ml-1">
-          4.4
+          {item.rating.toFixed(1)}
         </Text>
       </View>
-      <Image source={images.newYork} className="w-full h-40 rounded-lg"/>
+      <Image source={{ uri: item.image }} className="w-full h-40 rounded-lg" />
 
       <View className="flex flex-col mt-2">
-        <Text className="text-base font-rubik-bold text-black-100" numberOfLines={1}>Modern Studio</Text>
-        <Text className="text-xs font-rubik text-black-200">742 Evergreen Terrace</Text>
+        <Text className="text-base font-rubik-bold text-black-100" numberOfLines={1}>
+          {item.name}
+        </Text>
+        <Text className="text-xs font-rubik text-black-200">{item.address}</Text>
       </View>
 
       <View className="flex flex-row items-center justify-between mt-2">
-        <Text className="text-base font-rubik-bold text-primary-300">¥150,000</Text>
+        <Text className="text-base font-rubik-bold text-primary-300">
+          ¥{item.price.toLocaleString()}
+        </Text>
         <Image source={icons.heart} className="w-5 h-5 mr-2" tintColor="#191d31" />
       </View>
     </TouchableOpacity>

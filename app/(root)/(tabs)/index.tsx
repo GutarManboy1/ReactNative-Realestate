@@ -5,7 +5,7 @@ import icons from "@/constants/icons";
 import Search from "@/app/components/Search";
 import { FeaturedCard, Card } from "@/app/components/Cards";
 import Filters from "@/app/components/Filters";
-import seed, { properties } from "@/app/lib/seed";
+import { properties } from "@/app/lib/seed";
 
 export default function Index() {
   return (
@@ -16,7 +16,7 @@ export default function Index() {
         contentContainerClassName="pb-32"
         columnWrapperClassName="flex px-5 gap-5"
         showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => <Card />}
+        renderItem={({ item }) => <Card item={item} />}
         keyExtractor={(item) => item.$id}
         ListHeaderComponent={
           <View className="px-5">
@@ -54,7 +54,7 @@ export default function Index() {
                 data={properties.slice(0, 4)}
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => <FeaturedCard />}
+                renderItem={({ item }) => <FeaturedCard item={item} />}
                 keyExtractor={(item) => item.$id}
                 bounces={false}
                 contentContainerClassName="flex gap-5 mt-5"
