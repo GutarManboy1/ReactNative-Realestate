@@ -27,15 +27,26 @@ const facilities = [
   "Pet Center",
 ];
 
-function getRandomSubset<T>(array: T[], minItems: number, maxItems: number): T[] {
-  if (minItems > maxItems) throw new Error("minItems cannot be greater than maxItems");
+function getRandomSubset<T>(
+  array: T[],
+  minItems: number,
+  maxItems: number,
+): T[] {
+  if (minItems > maxItems)
+    throw new Error("minItems cannot be greater than maxItems");
   if (minItems < 0 || maxItems > array.length)
-    throw new Error("minItems or maxItems are out of valid range for the array");
-  const subsetSize = Math.floor(Math.random() * (maxItems - minItems + 1)) + minItems;
+    throw new Error(
+      "minItems or maxItems are out of valid range for the array",
+    );
+  const subsetSize =
+    Math.floor(Math.random() * (maxItems - minItems + 1)) + minItems;
   const arrayCopy = [...array];
   for (let i = arrayCopy.length - 1; i > 0; i--) {
     const randomIndex = Math.floor(Math.random() * (i + 1));
-    [arrayCopy[i], arrayCopy[randomIndex]] = [arrayCopy[randomIndex], arrayCopy[i]];
+    [arrayCopy[i], arrayCopy[randomIndex]] = [
+      arrayCopy[randomIndex],
+      arrayCopy[i],
+    ];
   }
   return arrayCopy.slice(0, subsetSize);
 }
@@ -104,7 +115,11 @@ function generateData() {
     const idx = i + 1;
     const assignedAgent = agents[Math.floor(Math.random() * agents.length)];
     const assignedReviews = getRandomSubset(reviews, 5, 7);
-    const assignedGalleries = getRandomSubset(galleries, 3, Math.min(8, galleries.length));
+    const assignedGalleries = getRandomSubset(
+      galleries,
+      3,
+      Math.min(8, galleries.length),
+    );
     const selectedFacilities = [...facilities]
       .sort(() => 0.5 - Math.random())
       .slice(0, Math.floor(Math.random() * facilities.length) + 1);
