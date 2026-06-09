@@ -7,6 +7,10 @@ import { FeaturedCard, Card } from "@/app/components/Cards";
 import Filters from "@/app/components/Filters";
 import { properties } from "@/app/lib/seed";
 import { router } from "expo-router";
+import type { Property } from "@/app/lib/seed";
+
+const handleCardPress = (item: Property) =>
+  router.push(`/(root)/properties/${item.$id}`);
 
 export default function Explore() {
   return (
@@ -17,7 +21,9 @@ export default function Explore() {
         contentContainerClassName="pb-32"
         columnWrapperClassName="flex px-5 gap-5"
         showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => <Card item={item} />}
+        renderItem={({ item }) => (
+          <Card item={item} onPress={() => handleCardPress(item)} />
+        )}
         keyExtractor={(item) => item.$id}
         ListHeaderComponent={
           <View className="px-5">
@@ -28,7 +34,9 @@ export default function Explore() {
               >
                 <Image source={icons.backArrow} className="size-5" />
               </TouchableOpacity>
-              <Text className="text-base mr-2 text-center font-rubik-medium text-black-300">Search for your Dream Home</Text>
+              <Text className="text-base mr-2 text-center font-rubik-medium text-black-300">
+                Search for your Dream Home
+              </Text>
               <Image source={icons.bell} className="size-6" />
             </View>
             <Search />

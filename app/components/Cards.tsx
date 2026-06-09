@@ -62,17 +62,26 @@ export const Card = ({ item, onPress }: Props) => {
       <Image source={{ uri: item.image }} className="w-full h-40 rounded-lg" />
 
       <View className="flex flex-col mt-2">
-        <Text className="text-base font-rubik-bold text-black-100" numberOfLines={1}>
+        <Text
+          className="text-base font-rubik-bold text-black-100"
+          numberOfLines={1}
+        >
           {item.name}
         </Text>
-        <Text className="text-xs font-rubik text-black-200">{item.address}</Text>
+        <Text className="text-xs font-rubik text-black-200">
+          {item.address}
+        </Text>
       </View>
 
       <View className="flex flex-row items-center justify-between mt-2">
         <Text className="text-base font-rubik-bold text-primary-300">
           ¥{item.price.toLocaleString()}
         </Text>
-        <Image source={icons.heart} className="w-5 h-5 mr-2" tintColor="#191d31" />
+        <Image
+          source={icons.heart}
+          className="w-5 h-5 mr-2"
+          tintColor="#191d31"
+        />
       </View>
     </TouchableOpacity>
   );
